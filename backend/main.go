@@ -38,7 +38,7 @@ func main() {
 	router.Use(logMiddleware)
 	startURL := ""
 
-	ln, err := listen(socketPath)
+	ln, err := net.Listen("unix", socketPath)
 	if err != nil {
 		logger.Fatal(err)
 	}
@@ -49,12 +49,8 @@ func main() {
 	logger.Fatal(router.Start(startURL))
 }
 
-func listen(path string) (net.Listener, error) {
-	return net.Listen("unix", path)
-}
-
 func hello(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, HTTPMessageBody{Message: "hello"})
+	return ctx.JSON(http.StatusOK, HTTPMessageBody{Message: "hello edit"})
 }
 
 type HTTPMessageBody struct {
