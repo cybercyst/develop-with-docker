@@ -1,9 +1,6 @@
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import Typography from "@mui/material/Typography";
+import { IconButton, Stack, Typography } from "@mui/material";
 
 export function PageHeader() {
   const navigate = useNavigate();

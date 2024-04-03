@@ -1,14 +1,4 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  InputLabel,
-  OutlinedInput,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, OutlinedInput, Stack, Typography } from "@mui/material";
 import { PageHeader } from "../shared/PageHeader";
 
 const LargeCheckbox = (
@@ -56,9 +46,15 @@ export function ProjectDetailsForm() {
           />
         </FormGroup>
 
-        <Button variant="contained" type="submit" onClick={generateProject}>
-          Generate project!
-        </Button>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Button variant="contained" type="submit" onClick={generateProject}>Generate project</Button>
+          {/*  NOTE(forrest): this reset button's navigation changes styles */}
+          {/* <Button href="/">Reset</Button> */}
+        </Stack>
       </Box>
     </>
   );

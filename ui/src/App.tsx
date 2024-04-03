@@ -1,5 +1,4 @@
 // import { createDockerDesktopClient } from '@docker/extension-api-client';
-import { Card, CardActionArea, CardContent, CardMedia, Stack, Typography } from '@mui/material';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BackendPicker } from './routes/BackendPicker';
 import { FrontendPicker } from './routes/FrontendPicker';
