@@ -1,0 +1,3 @@
+services:
+  develop-with-docker:
+    image: ${DESKTOP_PLUGIN_IMAGE}
