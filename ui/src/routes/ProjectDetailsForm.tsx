@@ -1,28 +1,35 @@
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, OutlinedInput, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  InputLabel,
+  OutlinedInput,
+  Typography,
+} from "@mui/material";
+import { PageHeader } from "../shared/PageHeader";
 
 const LargeCheckbox = (
-  <Checkbox
-    defaultChecked
-    sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
-  />
+  <Checkbox defaultChecked sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
 );
 
 export function ProjectDetailsForm() {
-  function generateProject(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function generateProject(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
     event.preventDefault();
     alert("Hi!");
   }
 
   return (
     <>
-      <Typography variant="h3">Develop with Docker</Typography>
-      <Box
-        component="form"
-        sx={{ mt: 8 }}
-        noValidate
-        autoComplete="off"
-      >
-        <Typography sx={{ mt: 4 }}>Please provide some basic details</Typography>
+      <PageHeader />
+      <Box component="form" sx={{ mt: 8 }} noValidate autoComplete="off">
+        <Typography sx={{ mt: 4 }}>
+          Please provide some basic details
+        </Typography>
         <FormGroup sx={{ mt: 1 }}>
           <FormControl>
             <InputLabel htmlFor="component-outlined">Project Name</InputLabel>
@@ -34,14 +41,24 @@ export function ProjectDetailsForm() {
           </FormControl>
         </FormGroup>
 
-        <Typography sx={{ mt: 4 }}>Select Docker products to include</Typography>
+        <Typography sx={{ mt: 4 }}>
+          Select Docker products to include
+        </Typography>
         <FormGroup>
           <FormControlLabel control={LargeCheckbox} label="Docker Scout" />
-          <FormControlLabel control={LargeCheckbox} label="Docker Build Cloud" />
-          <FormControlLabel control={LargeCheckbox} label="Docker Testcontainers" />
+          <FormControlLabel
+            control={LargeCheckbox}
+            label="Docker Build Cloud"
+          />
+          <FormControlLabel
+            control={LargeCheckbox}
+            label="Docker Testcontainers"
+          />
         </FormGroup>
 
-        <Button variant="contained" type="submit" onClick={generateProject}>Generate project!</Button>
+        <Button variant="contained" type="submit" onClick={generateProject}>
+          Generate project!
+        </Button>
       </Box>
     </>
   );

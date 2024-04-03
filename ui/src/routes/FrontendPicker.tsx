@@ -3,10 +3,13 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
+import { PageHeader } from "../shared/PageHeader";
 
 export function FrontendPicker() {
   const navigate = useNavigate();
@@ -41,7 +44,7 @@ export function FrontendPicker() {
 
   return (
     <>
-      <Typography variant="h3">Develop with Docker</Typography>
+      <PageHeader />
       <Typography sx={{ mt: 8 }}>
         What language or framework would you like to use for the frontend?
       </Typography>

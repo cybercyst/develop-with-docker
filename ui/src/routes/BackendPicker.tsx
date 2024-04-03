@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { PageHeader } from "../shared/PageHeader";
 
 export function BackendPicker() {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ export function BackendPicker() {
 
   return (
     <>
-      <Typography variant="h3">Develop with Docker</Typography>
+      <PageHeader />
       <Typography sx={{ mt: 8 }}>
         What language or framework would you like to use for the backend?
       </Typography>
