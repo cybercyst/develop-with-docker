@@ -53,7 +53,8 @@ export function BackendPicker() {
     <>
       <PageHeader />
       <Typography sx={{ mt: 8 }}>
-        What language or framework would you like to use for the backend?
+        Select the language or framework you'd like to use for the{" "}
+        <b>backend</b>
       </Typography>
       <Stack direction="row" alignItems="start" spacing={2} sx={{ mt: 2 }}>
         {options.map((option) => {
