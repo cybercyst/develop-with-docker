@@ -4,31 +4,36 @@ import { useNavigate } from "react-router-dom";
 export function BackendPicker() {
   const navigate = useNavigate();
 
-  const options = [{
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
-    alt: "nestjs",
-    title: "NestJS",
-    description: "A progressive Node.js framework for building efficient, reliable and scalable server-side applications.",
-    id: "nestjs"
-  }, {
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
-    alt: "fast api",
-    title: "Fast API",
-    description: "Create a web API. This will generate a backend server.",
-    id: "fastapi"
-  }, {
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
-    alt: "asp net",
-    title: "ASP.NET",
-    description: "ASP.NET is an open source web framework, created by Microsoft, for building modern web apps and services with .NET.",
-    id: "asp-net"
-  }, {
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg",
-    alt: "go",
-    title: "Go",
-    description: "Build simple, secure, scalable systems with Go",
-    id: "go"
-  }]
+  const options = [
+    {
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg",
+      alt: "go",
+      title: "Go",
+      description: "Build simple, secure, scalable systems with Go",
+      id: "go"
+    },
+    {
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
+      alt: "nestjs",
+      title: "NestJS",
+      description: "A progressive Node.js framework for building efficient, reliable and scalable server-side applications.",
+      id: "nestjs"
+    },
+    {
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+      alt: "fast api",
+      title: "Fast API",
+      description: "Create a web API. This will generate a backend server.",
+      id: "fastapi"
+    },
+    {
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
+      alt: "asp net",
+      title: "ASP.NET",
+      description: "ASP.NET is an open source web framework, created by Microsoft, for building modern web apps and services with .NET.",
+      id: "asp-net"
+    },
+  ]
 
   return (
     <>
