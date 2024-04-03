@@ -1,46 +1,40 @@
 import { Card, CardActionArea, CardContent, CardMedia, Stack, Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
-export function BackendPicker() {
+export function FrontendPicker() {
   const navigate = useNavigate();
 
   const options = [{
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
-    alt: "nestjs",
-    title: "NestJS",
-    description: "A progressive Node.js framework for building efficient, reliable and scalable server-side applications.",
-    id: "nestjs"
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    alt: "react",
+    title: "React",
+    description: "The library for web and native user interfaces",
+    id: "react"
   }, {
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
-    alt: "fast api",
-    title: "Fast API",
-    description: "Create a web API. This will generate a backend server.",
-    id: "fastapi"
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg",
+    alt: "angular",
+    title: "Angular",
+    description: "The web development framework for building the future",
+    id: "angular"
   }, {
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
-    alt: "asp net",
-    title: "ASP.NET",
-    description: "ASP.NET is an open source web framework, created by Microsoft, for building modern web apps and services with .NET.",
-    id: "asp-net"
-  }, {
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg",
-    alt: "go",
-    title: "Go",
-    description: "Build simple, secure, scalable systems with Go",
-    id: "go"
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
+    alt: "vue.js",
+    title: "Vue.js",
+    description: "An approachable, performant and versatile framework for building web user interfaces.",
+    id: "vue-js"
   }]
 
   return (
     <>
       <Typography variant="h3">Develop with Docker</Typography>
-      <Typography sx={{ mt: 8 }}>What language or framework would you like to use for the backend?</Typography>
+      <Typography sx={{ mt: 8 }}>What language or framework would you like to use for the frontend?</Typography>
       <Stack direction="row" alignItems="start" spacing={2} sx={{ mt: 2 }}>
         {
           options.map((option) => {
             return (
               <Card sx={{ height: 300, width: 250 }} key={option.id}>
                 <CardActionArea onClick={() =>
-                  navigate(`/frontend-picker`)
+                  navigate(`/project-details`)
                 }>
                   <CardMedia
                     component="img"

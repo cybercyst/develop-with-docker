@@ -5,19 +5,19 @@ export function ProjectTypePicker() {
   const navigate = useNavigate();
 
   const options = [{
-    image: "/public/stack-svgrepo-com.svg",
+    image: "/stack-svgrepo-com.svg",
     alt: "full-stack",
     title: "Full-stack application",
     description: "Create a full-stack application. This will generate both a backend server and a frontend application.",
     id: "full-stack"
   }, {
-    image: "/public/api-svgrepo-com.svg",
+    image: "/api-svgrepo-com.svg",
     alt: "web api",
     title: "Web API",
     description: "Create a web API. This will generate a backend server.",
     id: "web-api"
   }, {
-    image: "/public/web-interface-svgrepo-com.svg",
+    image: "/web-interface-svgrepo-com.svg",
     alt: "frontend app",
     title: "Frontend application",
     description: "Create a frontend application. This will generate a web application in the framework of your choice.",

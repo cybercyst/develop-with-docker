@@ -2,6 +2,7 @@
 import { Card, CardActionArea, CardContent, CardMedia, Stack, Typography } from '@mui/material';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BackendPicker } from './routes/BackendPicker';
+import { FrontendPicker } from './routes/FrontendPicker';
 import { ProjectTypePicker } from './routes/ProjectTypePicker';
 
 // Note: This line relies on Docker Desktop's presence as a host application.
@@ -28,6 +29,9 @@ export function App() {
 
         <Route path="/backend-picker" element={<BackendPicker />}></Route>
         <Route path="C:/backend-picker" element={<BackendPicker />}></Route>
+
+        <Route path="/frontend-picker" element={<FrontendPicker />}></Route>
+        <Route path="C:/frontend-picker" element={<FrontendPicker />}></Route>
       </Routes>
     </BrowserRouter>
   );
