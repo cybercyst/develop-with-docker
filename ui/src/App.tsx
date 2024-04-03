@@ -3,6 +3,7 @@ import { Card, CardActionArea, CardContent, CardMedia, Stack, Typography } from 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BackendPicker } from './routes/BackendPicker';
 import { FrontendPicker } from './routes/FrontendPicker';
+import { ProjectDetailsForm } from './routes/ProjectDetailsForm';
 import { ProjectTypePicker } from './routes/ProjectTypePicker';
 
 // Note: This line relies on Docker Desktop's presence as a host application.
@@ -32,6 +33,9 @@ export function App() {
 
         <Route path="/frontend-picker" element={<FrontendPicker />}></Route>
         <Route path="C:/frontend-picker" element={<FrontendPicker />}></Route>
+
+        <Route path="/project-details" element={<ProjectDetailsForm />}></Route>
+        <Route path="C:/project-details" element={<ProjectDetailsForm />}></Route>
       </Routes>
     </BrowserRouter>
   );
