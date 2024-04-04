@@ -40,4 +40,5 @@ COPY docker-compose.yaml .
 COPY metadata.json .
 COPY docker.svg .
 COPY --from=client-builder /ui/build ui
+COPY --chmod=0755 bin/linux/go-scaffold /linux/go-scaffold
 CMD /service -socket /run/guest-services/backend.sock

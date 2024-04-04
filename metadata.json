@@ -12,5 +12,26 @@
       "src": "index.html",
       "root": "ui"
     }
+  },
+  "host": {
+    "binaries": [
+      {
+        "darwin": [
+          {
+            "path": "/linux/go-scaffold"
+          }
+        ],
+        "linux": [
+          {
+            "path": "/linux/go-scaffold"
+          }
+        ],
+        "windows": [
+          {
+            "path": "/linux/go-scaffold"
+          }
+        ]
+      }
+    ]
   }
 }
