@@ -2,10 +2,10 @@ import {
   Box,
   Button,
   Card,
+  CardActionArea,
   CardContent,
   Checkbox,
   FormControl,
-  FormControlLabel,
   FormGroup,
   InputLabel,
   List,
@@ -18,13 +18,12 @@ import {
 } from "@mui/material";
 import { PageHeader } from "../shared/PageHeader";
 import { useNavigate } from "react-router-dom";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloudIcon from "@mui/icons-material/Cloud";
-
-const LargeCheckbox = (
-  <Checkbox defaultChecked sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
-);
+import ScoutLogo from "../assets/favicon-32x32.png";
+import DBCLogo from "../assets/dbc-32x32.png";
+import TestContainersLogo from "../assets/test-containers-32x32.png";
+import { useState } from "react";
 
 export function ProjectDetailsForm() {
   function generateProject(
@@ -40,12 +39,15 @@ export function ProjectDetailsForm() {
     <>
       <PageHeader />
       <Box component="form" sx={{ mt: 8 }} noValidate autoComplete="off">
-        <Typography variant="subtitle1">
-          Please provide some basic details
+        <Typography variant="h3" fontSize="1.3rem">
+          You're almost done!
         </Typography>
         <FormGroup sx={{ mt: 1 }}>
+          <Typography variant="body2">
+            Let's give this awesome project a name
+          </Typography>
           <FormControl>
-            <InputLabel htmlFor="component-outlined">Project Name</InputLabel>
+            <InputLabel htmlFor="component-outlined">Name</InputLabel>
             <OutlinedInput
               id="component-outlined"
               defaultValue=""
@@ -54,78 +56,125 @@ export function ProjectDetailsForm() {
           </FormControl>
         </FormGroup>
 
-        <Typography sx={{ mt: 4 }}>
-          Select Docker products to include
+        <Typography variant="h3" fontSize="1.3rem" mt={2}>
+          Choose additional docker features
         </Typography>
-        <FormGroup>
-          <FormControlLabel control={LargeCheckbox} label="Docker Scout" />
-          <FormControlLabel
-            control={LargeCheckbox}
-            label="Docker Build Cloud"
-          />
-          <FormControlLabel
-            control={LargeCheckbox}
-            label="Docker Testcontainers"
-          />
-        </FormGroup>
-        <Stack direction="row">
-          <TestcontainersBenefitsCard />
-          <DockerBuildScoutCard />
-          <DockerBuildCloudCard />
-        </Stack>
+        <ProductCardList />
 
         <Stack direction="row" justifyContent="center" alignItems="center">
           <Button variant="contained" type="submit" onClick={generateProject}>
             Generate project
           </Button>
-          <Button onClick={() => navigate("/")}>Reset</Button>
+          {/* <Button onClick={() => navigate("/")}>Reset</Button> */}
         </Stack>
       </Box>
     </>
   );
 }
 
-function TestcontainersBenefitsCard() {
+function ProductCardList() {
+  const [selectedItems, setSelectedItems] = useState<string[]>([
+    "TC",
+    "S",
+    "DBC",
+  ]);
+
+  const toggleSelection = (item: string) => {
+    if (selectedItems.includes(item)) {
+      setSelectedItems(
+        selectedItems.filter((selectedItem) => selectedItem !== item)
+      );
+    } else {
+      setSelectedItems([...selectedItems, item]);
+    }
+  };
+
+  return (
+    <Stack direction="row" width="100%" justifyContent="center">
+      <TestcontainersCard
+        onClick={() => toggleSelection("TC")}
+        isSelected={selectedItems.includes("TC")}
+      />
+      <DockerScoutCard
+        onClick={() => toggleSelection("S")}
+        isSelected={selectedItems.includes("S")}
+      />
+      <DockerBuildCloudCard
+        onClick={() => toggleSelection("DBC")}
+        isSelected={selectedItems.includes("DBC")}
+      />
+    </Stack>
+  );
+}
+
+function TestcontainersCard({
+  onClick,
+  isSelected,
+}: {
+  onClick: () => void;
+  isSelected: boolean;
+}) {
   const benefits = [
     "Isolated testing environments.",
     "Wide tool support.",
     "Consistent testing.",
     "Faster development.",
-    "Reliable JUnit integration.",
   ];
 
   return (
-    <Card sx={{ m: 2 }}>
-      <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{ fontWeight: "bold" }}
-        >
-          Testcontainers
-        </Typography>
-        <List sx={{ pl: 1 }}>
-          {benefits.map((benefit, index) => (
-            <ListItem key={index} disableGutters>
-              <ListItemIcon>
-                <CheckCircleIcon
-                  sx={{ color: (t) => t.palette.docker.green[600] }}
+    <Card
+      sx={{
+        m: 2,
+        borderRadius: "14px !important",
+        width: 300,
+        ...(isSelected && {
+          border: (t) => `2px solid ${t.palette.docker.green[600]}`,
+          bgcolor: (t) => t.palette.docker.green[100],
+        }),
+      }}
+    >
+      <CardActionArea onClick={onClick}>
+        <CardContent>
+          <Stack direction="row" alignItems="center" spacing={2} mb={2}>
+            <img src={TestContainersLogo} />
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              m={0}
+              sx={{ fontWeight: "bold" }}
+            >
+              Testcontainers
+            </Typography>
+          </Stack>
+          <List>
+            {benefits.map((benefit, index) => (
+              <ListItem key={index} disableGutters>
+                <ListItemIcon>
+                  <CheckCircleIcon sx={{ color: "#13b9b3" }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary={benefit}
+                  sx={{ color: (t) => t.palette.text.secondary }}
                 />
-              </ListItemIcon>
-              <ListItemText primary={benefit} />
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
+              </ListItem>
+            ))}
+          </List>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 }
 
-function DockerBuildScoutCard() {
+function DockerScoutCard({
+  onClick,
+  isSelected,
+}: {
+  onClick: () => void;
+  isSelected: boolean;
+}) {
   const benefits = [
     "Efficient image builds.",
-    "Streamlined workflow.",
     "Optimized performance.",
     "Enhanced security features.",
     "Easy integration.",
@@ -135,43 +184,61 @@ function DockerBuildScoutCard() {
     <Card
       sx={{
         m: 2,
+        borderRadius: "14px !important",
+        width: 300,
+        ...(isSelected && {
+          border: (t) => `2px solid ${t.palette.docker.green[600]}`,
+          bgcolor: (t) => t.palette.docker.green[100],
+        }),
       }}
     >
-      <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{ fontWeight: "bold", color: (t) => t.palette.docker.blue[500] }}
-        >
-          Docker Scout
-        </Typography>
-        <List sx={{ pl: 1 }}>
-          {benefits.map((benefit, index) => (
-            <ListItem key={index} disableGutters>
-              <ListItemIcon>
-                <CheckCircleIcon
-                  sx={{ color: (t) => t.palette.docker.blue[500] }}
+      <CardActionArea onClick={onClick}>
+        <CardContent>
+          <Stack direction="row" alignItems="center" spacing={2} mb={2}>
+            <img src={ScoutLogo} />
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              m={0}
+              sx={{ fontWeight: "bold" }}
+            >
+              Docker Scout
+            </Typography>
+          </Stack>
+          <List>
+            {benefits.map((benefit, index) => (
+              <ListItem key={index} disableGutters>
+                <ListItemIcon>
+                  <CheckCircleIcon
+                    sx={{ color: (t) => t.palette.docker.green[600] }}
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  sx={{ color: (t) => t.palette.text.secondary }}
+                  primary={benefit}
                 />
-              </ListItemIcon>
-              <ListItemText
-                sx={{ color: (t) => t.palette.text.secondary }}
-                primary={benefit}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
+              </ListItem>
+            ))}
+          </List>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 }
 
-function DockerBuildCloudCard() {
+function DockerBuildCloudCard({
+  onClick,
+  isSelected,
+}: {
+  onClick: () => void;
+  isSelected: boolean;
+}) {
   const benefits = [
     "Faster builds.",
-    "Shared cache across your team.",
+    "Team shared cache.",
     "Multi arch support.",
-    "Seamless CI/CD integration.",
+    "CI/CD integration.",
   ];
 
   return (
@@ -179,28 +246,44 @@ function DockerBuildCloudCard() {
       sx={{
         m: 2,
         borderRadius: "14px !important",
+        width: 300,
+        ...(isSelected && {
+          border: (t) => `2px solid ${t.palette.docker.green[600]}`,
+          bgcolor: (t) => t.palette.docker.green[100],
+        }),
       }}
     >
-      <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{ fontWeight: "bold", color: (t) => t.palette.docker.blue[500] }}
-        >
-          Docker Build Cloud
-        </Typography>
-        <List sx={{ pl: 1 }}>
-          {benefits.map((benefit, index) => (
-            <ListItem key={index} disableGutters>
-              <ListItemIcon>
-                <CloudIcon sx={{ color: (t) => t.palette.docker.blue[500] }} />
-              </ListItemIcon>
-              <ListItemText primary={benefit} />
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
+      <CardActionArea onClick={onClick}>
+        <CardContent>
+          <Stack direction="row" alignItems="center" spacing={2} mb={2}>
+            <img src={DBCLogo} />
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              m={0}
+              sx={{ fontWeight: "bold" }}
+            >
+              Build Cloud
+            </Typography>
+          </Stack>
+          <List>
+            {benefits.map((benefit, index) => (
+              <ListItem key={index} disableGutters>
+                <ListItemIcon>
+                  <CloudIcon
+                    sx={{ color: (t) => t.palette.docker.blue[500] }}
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  primary={benefit}
+                  sx={{ color: (t) => t.palette.text.secondary }}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 }
