@@ -22,14 +22,27 @@ import CloudIcon from "@mui/icons-material/Cloud";
 import ScoutLogo from "../assets/favicon-32x32.png";
 import DBCLogo from "../assets/dbc-32x32.png";
 import TestContainersLogo from "../assets/test-containers-32x32.png";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { createDockerDesktopClient } from "@docker/extension-api-client";
+import slugify from "slugify";
+
+const WORKSPACE_DIR = "/home/cybercyst/workspace/hackathon"
 
 export function ProjectDetailsForm() {
-  function generateProject(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  const client = createDockerDesktopClient();
+
+  const [projectName, setProjectName] = useState("");
+
+  async function generateProject(
+    event: FormEvent<HTMLFormElement>
   ) {
     event.preventDefault();
-    alert("Hi!");
+    const result = await client.extension.host?.cli.exec("go-scaffold", [
+      `${WORKSPACE_DIR}/full-stack-template`,
+      "--input", JSON.stringify({}),
+      "--output-directory", `${WORKSPACE_DIR}/generated/${slugify(projectName)}`
+    ]);
+    console.log(result?.stdout);
   }
 
   const navigate = useNavigate();
@@ -37,7 +50,7 @@ export function ProjectDetailsForm() {
   return (
     <>
       <PageHeader />
-      <Box component="form" sx={{ mt: 8 }} noValidate autoComplete="off">
+      <Box component="form" sx={{ mt: 8 }} noValidate autoComplete="off" onSubmit={generateProject}>
         <Typography variant="h3" fontSize="1.3rem">
           You're almost done!
         </Typography>
@@ -46,11 +59,13 @@ export function ProjectDetailsForm() {
             Let's give this awesome project a name
           </Typography>
           <FormControl>
-            <InputLabel htmlFor="component-outlined">Name</InputLabel>
+            <InputLabel htmlFor="projectName">Name</InputLabel>
             <OutlinedInput
-              id="component-outlined"
+              id="projectName"
+              name="projectName"
               defaultValue=""
               label="Project Name"
+              onChange={(e) => setProjectName(e.currentTarget.value)}
             />
           </FormControl>
         </FormGroup>
@@ -61,7 +76,7 @@ export function ProjectDetailsForm() {
         <ProductCardList />
 
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-          <Button variant="contained" type="submit" onClick={generateProject}>
+          <Button variant="contained" type="submit">
             Generate project
           </Button>
           <Button variant="text" onClick={() => navigate("/")}>Reset</Button>
