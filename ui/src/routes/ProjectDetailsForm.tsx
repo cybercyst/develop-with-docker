@@ -4,7 +4,6 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Checkbox,
   FormControl,
   FormGroup,
   InputLabel,
@@ -61,11 +60,11 @@ export function ProjectDetailsForm() {
         </Typography>
         <ProductCardList />
 
-        <Stack direction="row" justifyContent="center" alignItems="center">
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
           <Button variant="contained" type="submit" onClick={generateProject}>
             Generate project
           </Button>
-          {/* <Button onClick={() => navigate("/")}>Reset</Button> */}
+          <Button variant="text" onClick={() => navigate("/")}>Reset</Button>
         </Stack>
       </Box>
     </>
