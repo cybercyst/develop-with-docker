@@ -26,6 +26,7 @@ import { FormEvent, useState } from "react";
 import { createDockerDesktopClient } from "@docker/extension-api-client";
 import slugify from "slugify";
 
+// NOTE: You may want to modify this to where you'll have things
 const WORKSPACE_DIR = "/home/cybercyst/workspace/hackathon"
 
 export function ProjectDetailsForm() {
